@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { authUseCases } from '../../../auth/infraestructure/dependencies';
+import router from '../../../router/router';
 import AuthButton from '../atoms/AuthButton.vue';
 import Logo from '../atoms/Logo.vue';
 import NavbarLinksContainer from '../organisms/NavbarLinksContainer.vue';
@@ -10,6 +11,7 @@ const handleLogin = async () => {
 
 const handleLogout = async () => {
     await authUseCases.signOut();
+    router.push('/'); 
 }
 </script>
 
