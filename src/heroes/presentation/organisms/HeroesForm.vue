@@ -3,6 +3,11 @@ import { reactive } from 'vue';
 import Title from '../../../common/presentation/atoms/Title.vue';
 import { isFormEmpty } from '../../utils/isFormEmpty';
 import { HeroesFormValues } from '../../domain/Heroes.entity';
+import { useCreateHero } from '../hooks/useCreateHero.hook';
+import { useToast } from 'vue-toastification';
+
+const { createHero } = useCreateHero();
+const toast = useToast();
 
 const formValues: HeroesFormValues = reactive({
     name: null,
@@ -17,11 +22,10 @@ const formValues: HeroesFormValues = reactive({
 });
 
 const handleSubmit = () => {
-    console.log(formValues)
     if (isFormEmpty(formValues)) {
-        console.log('Formulario enviado:', formValues);
+        createHero(formValues);
     } else {
-        console.log('Todos los campos son obligatorios');
+        toast.error('Please fill all the fields');
     }
 };
 
