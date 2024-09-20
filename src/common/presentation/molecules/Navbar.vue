@@ -1,18 +1,20 @@
 <script setup lang="ts">
-import { authUseCases } from '../../../auth/infraestructure/dependencies';
-import router from '../../../router/router';
+import { onAuthStateChanged } from 'firebase/auth';
 import AuthButton from '../atoms/AuthButton.vue';
 import Logo from '../atoms/Logo.vue';
 import NavbarLinksContainer from '../organisms/NavbarLinksContainer.vue';
+import { ref, onMounted } from 'vue';
+import { firebaseAuth } from '../../../firebase/firebase';
+import { handleLogin, handleLogout } from '../../../auth/utils/authActions';
 
-const handleLogin = async () => {
-    await authUseCases.signInWithGoogle();
-}
+const isAuthenticated = ref(false);
 
-const handleLogout = async () => {
-    await authUseCases.signOut();
-    router.push('/'); 
-}
+onMounted(() => {
+    onAuthStateChanged(firebaseAuth, (user) => {
+        isAuthenticated.value = !!user;
+    });
+});
+
 </script>
 
 <template>
@@ -20,8 +22,10 @@ const handleLogout = async () => {
         <Logo size="3xl" />
         <NavbarLinksContainer />
         <div class="flex space-x-2">
-            <AuthButton btnText="Login" :action="handleLogin" />
-            <AuthButton btnText="Logout" :action="handleLogout" />
+            <AuthButton 
+                :btnText="isAuthenticated ? 'Logout' : 'Login'" 
+                :action="isAuthenticated ? handleLogout : handleLogin" 
+            />
         </div>
     </nav>
 </template>
