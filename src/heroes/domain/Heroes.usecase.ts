@@ -12,4 +12,7 @@ export class HeroesUseCases {
     async getHeroById(id: string): Promise<Hero> {
         return await this.heroRepository.getHeroById(id);
     }
+    async deleteHero(id: string): Promise<void> {
+        return await this.heroRepository.deleteHero(id);
+    }
 }

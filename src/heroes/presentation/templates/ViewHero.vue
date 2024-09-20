@@ -32,7 +32,7 @@ onMounted(async () => {
                         {{ value }}
                     </p>
                 </div>
-                <HeroesActionsBtns />
+                <HeroesActionsBtns :heroId="hero?.id"/>
             </div>
         </div>
     </div>
