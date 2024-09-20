@@ -13,7 +13,6 @@ const userInformation = ref();
 
 onMounted(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
-        console.log(user)
         isAuthenticated.value = !!user;
         userInformation.value = user;
     });
@@ -24,8 +23,8 @@ onMounted(() => {
 <template>
     <nav class="w-full h-16 shadow-sm flex justify-between items-center p-4">
         <Logo size="3xl" />
-        <NavbarLinksContainer />
-        <div class="flex space-x-2">
+        <div class="flex space-x-2 items-center">
+            <NavbarLinksContainer />
             <UserInfo v-if="isAuthenticated && userInformation" :userInformation="userInformation" />
             <AuthButton 
                 :btnText="isAuthenticated ? 'Logout' : 'Login'" 

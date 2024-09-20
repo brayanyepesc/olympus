@@ -5,12 +5,14 @@ import { firebaseAuth } from '../firebase/firebase';
 import Heroes from '../heroes/presentation/templates/Heroes.vue';
 import CreateHeroes from '../heroes/presentation/templates/CreateHeroes.vue';
 import ViewHero from '../heroes/presentation/templates/ViewHero.vue';
+import Competition from '../heroes/presentation/templates/Competition.vue';
 
 const routes = [
   { path: '/', component: Home },
   { path: '/heroes', component: Heroes, meta: { requiresAuth: true } },
   { path: '/heroes/create', component: CreateHeroes, meta: { requiresAuth: true } },
   { path: '/heroes/details/:id', component: ViewHero, meta: { requiresAuth: true } },
+  { path: '/competition', component: Competition, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({
