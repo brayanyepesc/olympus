@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import HeroesForm from '../organisms/HeroesForm.vue';
+</script>
+
 <template>
-    Create Heroes
+    <HeroesForm />
 </template>

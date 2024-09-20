@@ -3,7 +3,7 @@ export interface Hero {
     updatedAt: Date;
     createdAt: Date;
     name: string;
-    picture: string;
+    photoURL: string;
     attributes: {
         agility: number;
         strength: number;
