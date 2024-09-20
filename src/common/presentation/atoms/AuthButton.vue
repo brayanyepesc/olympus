@@ -3,5 +3,5 @@
 </script>
 
 <template>
-    <button @click="action" class="px-8 py-2 border border-gray-200 rounded-lg text-indigo-500 shadow-md hover:border-pink-500 transition-all hover:shadow-pink-500">{{ btnText }}</button>
+    <button @click="action" class="px-8 py-2 rounded-lg text-white bg-indigo-500 hover:bg-indigo-800 transition-all">{{ btnText }}</button>
 </template>

@@ -1,4 +1,4 @@
-import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../home/presentation/templates/Home.vue'
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/firebase';
