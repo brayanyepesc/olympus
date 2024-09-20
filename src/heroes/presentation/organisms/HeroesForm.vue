@@ -1,22 +1,51 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import Title from '../../../common/presentation/atoms/Title.vue';
-import { isFormEmpty } from '../../utils/isFormEmpty';
+import { HeroesFormValues, isFormEmpty } from '../../utils/isFormEmpty';
 
-const formValues = reactive({
+const formValues: HeroesFormValues = reactive({
     name: null,
     agility: null,
     strength: null,
     weight: null,
     endurance: null,
     charisma: null,
+    photoURL: null,
 });
 
 const handleSubmit = () => {
+    console.log(formValues)
     if (isFormEmpty(formValues)) {
         console.log('Formulario enviado:', formValues);
     } else {
         console.log('Todos los campos son obligatorios');
+    }
+};
+
+const handleFileChange = (event: Event) => {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            const image = new Image();
+            image.src = e.target?.result as string;
+
+            image.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                canvas.width = 128;
+                canvas.height = 128;
+
+                if (ctx) {
+                    ctx.drawImage(image, 0, 0, 128, 128);
+                    formValues.photoURL = canvas.toDataURL('image/png');
+                }
+            };
+        };
+        reader.readAsDataURL(file);
     }
 };
 
@@ -58,12 +87,11 @@ const handleSubmit = () => {
             </div>
             <div class="col-span-2 w-full">
                 <div class="flex flex-col space-y-2">
-                    <label for="photoURL" class="text-indigo-500">Picture</label>
-                    <input type="file" class="border w-full rounded-lg p-5">
+                    <label for="photoURL" class="text-indigo-500">Picture <span class="text-sm text-pink-500">PNG</span></label>
+                    <input type="file" accept="image/png" class="border w-full rounded-lg p-5" @change="handleFileChange">
                 </div>
             </div>
-            <button type="submit"
-                class="w-full col-span-2 p-2 rounded-lg bg-indigo-500 hover:bg-indigo-800 text-white">Create</button>
+            <button type="submit" class="w-full col-span-2 p-2 rounded-lg bg-indigo-500 hover:bg-indigo-800 text-white">Create</button>
         </form>
     </div>
 </template>
