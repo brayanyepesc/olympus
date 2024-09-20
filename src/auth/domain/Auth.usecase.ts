@@ -5,4 +5,7 @@ export class AuthUseCases {
     async signInWithGoogle(): Promise<void> {
         return this.authRepository.signInWithGoogle();
     }
+    async signOut(): Promise<void> {
+        return this.authRepository.signOut();
+    }
 }
