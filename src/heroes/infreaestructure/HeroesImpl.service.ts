@@ -32,4 +32,19 @@ export class HeroesService implements HeroesRepository {
             console.log(error);
         }
     }
+    async getHeroById(id: string): Promise<Hero> {
+        try {
+            const response = await axios.get(`https://codetest-api.applivery.io/pentathlon/heroes/${id}`, {
+                headers: {
+                    'Authorization': import.meta.env.VITE_AUTHORIZATION_API_KEY
+                }
+            })
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        return {} as Hero;
+    }
 }

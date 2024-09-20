@@ -9,4 +9,7 @@ export class HeroesUseCases {
     async createHero(hero: HeroesFormValues): Promise<void> {
         return await this.heroRepository.createHero(hero);
     }
+    async getHeroById(id: string): Promise<Hero> {
+        return await this.heroRepository.getHeroById(id);
+    }
 }
