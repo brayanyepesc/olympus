@@ -1,12 +1,12 @@
 export interface HeroesFormValues {
-    name: string | null;
-    picture: string | null;
+    name: string;
+    picture: string;
     attributes: {
-        agility: number | null;
-        strength: number | null;
-        weight: number | null;
-        endurance: number | null;
-        charisma: number | null;
+        agility: number;
+        strength: number;
+        weight: number;
+        endurance: number;
+        charisma: number;
     }
 }
 

@@ -12,14 +12,14 @@ const toast = useToast();
 const router = useRouter();
 
 const formValues: HeroesFormValues = reactive({
-    name: null,
-    picture: null,
+    name: '',
+    picture: '',
     attributes: {
-        agility: null,
-        strength: null,
-        weight: null,
-        endurance: null,
-        charisma: null
+        agility: 0,
+        strength: 0,
+        weight: 0,
+        endurance: 0,
+        charisma: 0
     }
 });
 
