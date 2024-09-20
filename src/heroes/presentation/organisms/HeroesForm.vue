@@ -4,10 +4,12 @@ import Title from '../../../common/presentation/atoms/Title.vue';
 import { isFormEmpty } from '../../utils/isFormEmpty';
 import { HeroesFormValues } from '../../domain/Heroes.entity';
 import { useCreateHero } from '../hooks/useCreateHero.hook';
-import { useToast } from 'vue-toastification';
+import { POSITION, useToast } from 'vue-toastification';
+import { useRouter } from 'vue-router';
 
 const { createHero } = useCreateHero();
 const toast = useToast();
+const router = useRouter();
 
 const formValues: HeroesFormValues = reactive({
     name: null,
@@ -21,11 +23,14 @@ const formValues: HeroesFormValues = reactive({
     }
 });
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
     if (isFormEmpty(formValues)) {
-        createHero(formValues);
+        await createHero(formValues);
+        router.push('/heroes');
     } else {
-        toast.error('Please fill all the fields');
+        toast.error('Please fill all the fields', {
+            position: POSITION.BOTTOM_RIGHT,
+        });
     }
 };
 

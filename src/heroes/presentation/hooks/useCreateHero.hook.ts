@@ -1,4 +1,4 @@
-import { useToast } from "vue-toastification";
+import { POSITION, useToast } from "vue-toastification";
 import { heroesUseCases } from "../../infreaestructure/dependencies";
 import { HeroesFormValues } from "../../domain/Heroes.entity";
 
@@ -7,9 +7,13 @@ export const useCreateHero = () => {
     const createHero = async (hero: HeroesFormValues) => {
         try {
             await heroesUseCases.createHero(hero);
-            toast.success("Hero created successfully");
+            toast.success("Hero created successfully", {
+                position: POSITION.BOTTOM_RIGHT,
+            });
         } catch (error) {
-            toast.error("Error creating hero");
+            toast.error("Error creating hero", {
+                position: POSITION.BOTTOM_RIGHT,
+            });
         }
     }
     return { createHero };
