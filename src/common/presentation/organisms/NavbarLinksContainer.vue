@@ -4,6 +4,6 @@ import { navigationLinks } from '../../utils/navigationLinks';
 
 <template>
     <ul class="flex space-x-2">
-        <li v-for="{ id, name } in navigationLinks" :key="id" class="text-indigo-500 hover:text-pink-500 cursor-pointer">{{ name }}</li>
+        <a :href="path" v-for="{ id, name, path } in navigationLinks" :key="id" class="text-indigo-500 hover:text-pink-500 cursor-pointer">{{ name }}</a>
     </ul>
 </template>

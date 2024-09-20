@@ -2,11 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../home/presentation/templates/Home.vue'
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/firebase';
-import Platform from '../platform/presentation/templates/Platform.vue';
+import Heroes from '../heroes/presentation/templates/Heroes.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/platform', component: Platform, meta: { requiresAuth: true } },
+  { path: '/heroes', component: Heroes, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({
